@@ -1,1 +1,87 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Compra</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .payment-info {
+            background-color: #e9f5ff;
+            border-left: 5px solid #007bff;
+            padding: 20px;
+            margin-top: 2rem;
+            border-radius: 5px;
+        }
+
+        .payment-info h2 {
+            color: #007bff;
+        }
+
+        .payment-info p {
+            margin-bottom: 10px;
+        }
+
+        .bank-details {
+            margin-bottom: 2rem;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>¡Compra realizada con éxito!</h1>
+        <p>Tu pedido está casi listo. Por favor, completa el pago.</p>
+    </header>
+
+    <main class="container">
+        <div class="payment-info">
+            <h2>Datos para la Transferencia Bancaria</h2>
+            <p>Por favor, realiza una transferencia a una de las siguientes cuentas y envíanos el comprobante.</p>
+            <br>
+
+            <div class="bank-details">
+                <h3>Banco Guayaquil</h3>
+                <p><strong>Titular de la Cuenta:</strong> Michael Moran Lopez</p>
+                <p><strong>Tipo de Cuenta:</strong> Ahorros</p>
+                <p><strong>Número de Cuenta:</strong> 0036995950</p>
+                <p><strong>RUC:</strong> 1207085943001</p>
+            </div>
+
+            <div class="bank-details">
+                <h3>Banco Pichincha</h3>
+                <p><strong>Titular de la Cuenta:</strong> Michael Moran Lopez</p>
+                <p><strong>Tipo de Cuenta:</strong> Ahorros</p>
+                <p><strong>Número de Cuenta:</strong> 2210769474</p>
+                <p><strong>RUC:</strong> 1207085943001</p>
+            </div>
+
+            <p><strong>Total a pagar:</strong> <span id="total-price">$XXX</span></p>
+        </div>
+
+        <div class="contact-info" style="margin-top: 20px;">
+            <p>Para confirmar tu pago, envíanos el comprobante de transferencia por WhatsApp o correo electrónico:</p>
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/[TuNumeroDeWhatsApp]">[Tu Número de WhatsApp]</a></p>
+            <p><strong>Email:</strong> <a href="mailto:[TuCorreoElectronico]">[Tu Correo Electrónico]</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechMóvil. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const totalPrice = localStorage.getItem('totalPrice');
+            if (totalPrice) {
+                document.getElementById('total-price').textContent = totalPrice;
+            }
+        });
+    </script>
+
+</body>
+</html>
