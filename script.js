@@ -1,6 +1,5 @@
-alert('¡Hola!');
+document.addEventListener('DOMContentLoaded', () => {
 
-    // Diccionario de costos de envío por provincia, cantón y parroquia
     const shippingData = {
         'pichincha': {
             'quito': {
@@ -30,7 +29,6 @@ alert('¡Hola!');
         // Añade aquí los datos para todas las provincias, cantones y parroquias que necesites
     };
 
-    // Referencias a los selectores HTML
     const provinceSelect = document.getElementById('province-select');
     const cantonSelect = document.getElementById('canton-select');
     const parishSelect = document.getElementById('parish-select');
@@ -42,8 +40,8 @@ alert('¡Hola!');
 
     let cart = [];
 
-    // Función para llenar los selectores
     function populateSelect(selectElement, data, defaultText) {
+        if (!selectElement) return; // Validación para evitar errores si el elemento no existe
         selectElement.innerHTML = `<option value="">${defaultText}</option>`;
         selectElement.disabled = false;
         if (data) {
@@ -58,38 +56,10 @@ alert('¡Hola!');
         }
     }
 
-    // Llenar el selector de provincias al cargar la página
     if (provinceSelect) {
         populateSelect(provinceSelect, shippingData, 'Selecciona...');
     }
-
-    // Event Listeners para actualizar los selectores en cascada
-    if (provinceSelect) {
-        provinceSelect.addEventListener('change', () => {
-            const selectedProvince = provinceSelect.value;
-            const cantons = selectedProvince ? shippingData[selectedProvince] : null;
-            populateSelect(cantonSelect, cantons, 'Selecciona un cantón...');
-            populateSelect(parishSelect, null, 'Selecciona una parroquia...');
-            updateCart();
-        });
-    }
-
-    if (cantonSelect) {
-        cantonSelect.addEventListener('change', () => {
-            const selectedProvince = provinceSelect.value;
-            const selectedCanton = cantonSelect.value;
-            const parishes = (selectedProvince && selectedCanton) ? shippingData[selectedProvince][selectedCanton] : null;
-            populateSelect(parishSelect, parishes, 'Selecciona una parroquia...');
-            updateCart();
-        });
-    }
-
-    if (parishSelect) {
-        parishSelect.addEventListener('change', () => {
-            updateCart();
-        });
-    }
-
+    
     // Función principal para actualizar el carrito y calcular el total
     function updateCart() {
         let shippingCost = 0;
@@ -126,7 +96,6 @@ alert('¡Hola!');
 
         const total = subtotal + (cart.length > 0 && shippingCost ? shippingCost : 0);
 
-        // Agregamos el resumen del carrito
         const summaryHtml = `
             <div class="cart-summary">
                 <p>Subtotal: $${subtotal.toFixed(2)}</p>
@@ -145,7 +114,7 @@ alert('¡Hola!');
             checkoutButton.style.display = 'none';
         }
     }
-
+    
     // Lógica para añadir productos al carrito
     botonesComprar.forEach(boton => {
         boton.addEventListener('click', (e) => {
@@ -163,32 +132,4 @@ alert('¡Hola!');
         localStorage.setItem('totalPrice', cartTotalSpan.textContent);
         window.location.href = 'pago-transferencia.html';
     });
-
-    // Lógica del modal de contacto
-    const contactButton = document.getElementById('contact-button');
-    const contactModal = document.getElementById('contact-modal');
-    const closeButton = document.querySelector('.modal-close');
-    if (contactButton && contactModal) {
-        contactButton.addEventListener('click', () => { contactModal.classList.add('active'); });
-        closeButton.addEventListener('click', () => { contactModal.classList.remove('active'); });
-        contactModal.addEventListener('click', (e) => { if (e.target === contactModal) { contactModal.classList.remove('active'); } });
-    }
-
-    // Lógica del formulario
-    const formulario = document.querySelector('.contact-form form');
-    if (formulario) {
-        formulario.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const nombre = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const mensaje = document.getElementById('message').value;
-            if (nombre && email && mensaje) {
-                alert('¡Mensaje enviado con éxito! Gracias por tu contacto.');
-                formulario.reset();
-                contactModal.classList.remove('active');
-            } else {
-                alert('Por favor, completa todos los campos.');
-            }
-        });
-    }
 });
