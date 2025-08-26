@@ -52,6 +52,24 @@
 
         <section class="cart-container" style="display: none;">
             <h2>Carrito de Compras</h2>
+            
+            <div class="shipping-selector">
+                <label for="province-select">Selecciona tu Provincia:</label>
+                <select id="province-select" name="province">
+                    <option value="">Selecciona...</option>
+                </select>
+                <br>
+                <label for="canton-select">Selecciona tu Cantón:</label>
+                <select id="canton-select" name="canton" disabled>
+                    <option value="">Selecciona...</option>
+                </select>
+                <br>
+                <label for="parish-select">Selecciona tu Parroquia:</label>
+                <select id="parish-select" name="parish" disabled>
+                    <option value="">Selecciona...</option>
+                </select>
+            </div>
+            
             <div id="cart-items"></div>
             <div class="cart-total">
                 <strong>Total: $<span id="cart-total-price">0</span></strong>
