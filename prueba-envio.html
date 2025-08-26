@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Envío</title>
+    <style>
+        .cart-container {
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+        }
+        .shipping-selector label, .shipping-selector select {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="cart-container">
+        <h2>Prueba de Envío</h2>
+        <div class="shipping-selector">
+            <label for="province-select">Selecciona tu Provincia:</label>
+            <select id="province-select" name="province">
+                <option value="">Selecciona...</option>
+            </select>
+            <br>
+            <label for="canton-select">Selecciona tu Cantón:</label>
+            <select id="canton-select" name="canton" disabled>
+                <option value="">Selecciona...</option>
+            </select>
+            <br>
+            <label for="parish-select">Selecciona tu Parroquia:</label>
+            <select id="parish-select" name="parish" disabled>
+                <option value="">Selecciona...</option>
+            </select>
+        </div>
+        <br>
+        <p>Costo de Envío: <span id="shipping-cost">$0.00</span></p>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const shippingData = {
+                'pichincha': {
+                    'quito': {
+                        'carcelen': 6.00,
+                        'calderon': 6.50,
+                        'centro-historico': 6.00
+                    },
+                    'ruminahui': {
+                        'sangolqui': 6.50
+                    },
+                    'cayambe': {
+                        'cayambe': 7.00
+                    }
+                },
+                'guayas': {
+                    'guayaquil': {
+                        'guayaquil-centro': 6.00,
+                        'guayaquil-sur': 6.50
+                    },
+                    'duran': {
+                        'duran': 6.50
+                    },
+                    'samborondon': {
+                        'samborondon': 7.00
+                    }
+                }
+            };
+
+            const provinceSelect = document.getElementById('province-select');
+            const cantonSelect = document.getElementById('canton-select');
+            const parishSelect = document.getElementById('parish-select');
+            const shippingCostSpan = document.getElementById('shipping-cost');
+
+            function populateSelect(selectElement, data, defaultText) {
+                selectElement.innerHTML = `<option value="">${defaultText}</option>`;
+                selectElement.disabled = false;
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                        const option = document.createElement('option');
+                        option.value = key;
+                        option.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+                        selectElement.appendChild(option);
+                    });
+                } else {
+                    selectElement.disabled = true;
+                }
+            }
+
+            function updateShippingCost() {
+                let cost = 0;
+                const selectedProvince = provinceSelect.value;
+                const selectedCanton = cantonSelect.value;
+                const selectedParish = parishSelect.value;
+
+                if (selectedProvince && selectedCanton && selectedParish) {
+                    cost = shippingData[selectedProvince][selectedCanton][selectedParish];
+                }
+                shippingCostSpan.textContent = `$${cost.toFixed(2)}`;
+            }
+
+            populateSelect(provinceSelect, shippingData, 'Selecciona...');
+
+            provinceSelect.addEventListener('change', () => {
+                const selectedProvince = provinceSelect.value;
+                const cantons = selectedProvince ? shippingData[selectedProvince] : null;
+                populateSelect(cantonSelect, cantons, 'Selecciona un cantón...');
+                populateSelect(parishSelect, null, 'Selecciona una parroquia...');
+                updateShippingCost();
+            });
+
+            cantonSelect.addEventListener('change', () => {
+                const selectedProvince = provinceSelect.value;
+                const selectedCanton = cantonSelect.value;
+                const parishes = (selectedProvince && selectedCanton) ? shippingData[selectedProvince][selectedCanton] : null;
+                populateSelect(parishSelect, parishes, 'Selecciona una parroquia...');
+                updateShippingCost();
+            });
+
+            parishSelect.addEventListener('change', updateShippingCost);
+        });
+    </script>
+</body>
+</html>
