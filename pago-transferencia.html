@@ -33,18 +33,6 @@
             text-align: center;
         }
 
-        .contact-info input {
-            width: 80%;
-            max-width: 300px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 10px 0;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         .contact-info button {
             background-color: #28a745;
             color: white;
@@ -95,12 +83,9 @@
 
         <div class="contact-info" style="margin-top: 20px;">
             <h2>Confirma tu Pago</h2>
-            <p>Para confirmar tu pago y agilizar el envío, por favor, ingresa tu número de WhatsApp y haz clic en "Enviar comprobante".</p>
+            <p>Haz clic en el botón de abajo para enviarnos tu comprobante de pago por WhatsApp y agilizar el envío de tu celular.</p>
             <p>También puedes enviarnos el comprobante de transferencia a nuestro correo electrónico: <a href="mailto:moormixdigital@outlook.com">moormixdigital@outlook.com</a></p>
             <br>
-            
-            <label for="whatsapp-input">Ingresa tu número de WhatsApp:</label>
-            <input type="tel" id="whatsapp-input" placeholder="Ej: 0987654321" required>
             
             <button id="send-whatsapp">Enviar Comprobante</button>
         </div>
@@ -118,20 +103,15 @@
             }
             
             const sendWhatsappButton = document.getElementById('send-whatsapp');
-            const whatsappInput = document.getElementById('whatsapp-input');
             
-            if (sendWhatsappButton && whatsappInput) {
+            if (sendWhatsappButton) {
                 sendWhatsappButton.addEventListener('click', () => {
-                    const phoneNumber = whatsappInput.value;
-                    const message = `Hola, he realizado una compra y ya hice la transferencia. Aquí está mi comprobante. Total a pagar: $${totalPrice}`;
+                    // Tu número de teléfono con el código de país de Ecuador (593)
+                    const myPhoneNumber = '593967427594'; 
+                    const message = `Hola, mi nombre es [Escribe aquí tu nombre]. Ya he realizado una compra y he completado la transferencia. Aquí está mi comprobante. Total pagado: $${totalPrice}`;
                     
-                    if (phoneNumber) {
-                        // El 593 es el código de país de Ecuador
-                        const whatsappLink = `https://wa.me/593${phoneNumber}?text=${encodeURIComponent(message)}`;
-                        window.open(whatsappLink, '_blank');
-                    } else {
-                        alert('Por favor, ingresa tu número de WhatsApp para continuar.');
-                    }
+                    const whatsappLink = `https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappLink, '_blank');
                 });
             }
         });
