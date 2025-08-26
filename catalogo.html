@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo - TechMóvil</title>
+    <title>Catálogo - Moormix Digital</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="header-content">
-            <a href="index.html" class="logo">TechMóvil</a>
+            <a href="index.html" class="logo">Moormix Digital</a>
             <nav>
                 <a href="catalogo.html">Catálogo</a>
                 <a href="rastreo.html">Rastreo</a>
@@ -22,14 +22,6 @@
     <main class="container">
         <section class="catalog-header">
             <h1>Nuestro Catálogo de Teléfonos</h1>
-            <div class="filter-sort">
-                <label for="sort">Ordenar por:</label>
-                <select id="sort">
-                    <option value="default">Seleccionar</option>
-                    <option value="price-asc">Precio: Menor a Mayor</option>
-                    <option value="price-desc">Precio: Mayor a Menor</option>
-                </select>
-            </div>
         </section>
         
         <section class="products-section">
@@ -61,9 +53,8 @@
             </div>
         </section>
 
-        <section class="cart-container">
+        <section class="cart-container" style="display: none;">
             <h2>Carrito de Compras</h2>
-
             <div class="shipping-selector">
                 <label for="province-select">Selecciona tu Provincia:</label>
                 <select id="province-select" name="province">
@@ -80,13 +71,6 @@
                     <option value="">Selecciona...</option>
                 </select>
             </div>
-            <p class="shipping-note">
-                <small>El envío es a la oficina de Servientrega más cercana a tu ubicación. Te contactaremos para confirmar la dirección exacta.</small>
-            </p>
-            <p class="find-location">
-                ¿No sabes cuál es tu oficina más cercana? <a href="https://www.servientrega.com.ec/oficinas-servientrega-ecuador/" target="_blank">Encuentra una aquí.</a>
-            </p>
-
             <div id="cart-items"></div>
             <div class="cart-total">
                 <strong>Total: $<span id="cart-total-price">0</span></strong>
@@ -95,26 +79,8 @@
         </section>
     </main>
 
-    <div id="contact-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div class="contact-form">
-                <h3>Contáctanos</h3>
-                <form>
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                    <label for="message">Mensaje:</label>
-                    <textarea id="message" name="message" required></textarea>
-                    <button type="submit" class="submit-button">Enviar Mensaje</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <footer>
-        <p>&copy; 2025 TechMóvil. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Moormix Digital. Todos los derechos reservados.</p>
     </footer>
 
     <script src="script.js"></script>
