@@ -80,14 +80,31 @@
         <p>&copy; 2025 TechMóvil. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const totalPrice = localStorage.getItem('totalPrice');
-            if (totalPrice) {
-                document.getElementById('total-price').textContent = totalPrice;
-            }
-        });
-    </script>
-
-</body>
-</html>
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Lógica para mostrar el precio total
+        const totalPrice = localStorage.getItem('totalPrice');
+        if (totalPrice) {
+            document.getElementById('total-price').textContent = totalPrice;
+        }
+        
+        // Lógica para el botón de WhatsApp
+        const sendWhatsappButton = document.getElementById('send-whatsapp');
+        const whatsappInput = document.getElementById('whatsapp-input');
+        
+        if (sendWhatsappButton && whatsappInput) {
+            sendWhatsappButton.addEventListener('click', () => {
+                const phoneNumber = whatsappInput.value;
+                const message = `Hola, he realizado una compra de $${totalPrice} y ya hice la transferencia. Aquí está mi comprobante.`;
+                
+                if (phoneNumber) {
+                    // El 593 es el código de país de Ecuador
+                    const whatsappLink = `https://wa.me/593${phoneNumber}?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappLink, '_blank');
+                } else {
+                    alert('Por favor, ingresa tu número de WhatsApp para continuar.');
+                }
+            });
+        }
+    });
+</script>
