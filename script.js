@@ -12,15 +12,25 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateCart() {
         cartItemsDiv.innerHTML = '';
         let total = 0;
-        cart.forEach(item => {
+        cart.forEach((item, index) => {
             const itemElement = document.createElement('div');
             itemElement.classList.add('cart-item');
             itemElement.innerHTML = `
                 <span>${item.name}</span>
                 <span>$${item.price}</span>
+                <button class="remove-button" data-index="${index}">Eliminar</button>
             `;
             cartItemsDiv.appendChild(itemElement);
             total += item.price;
+        });
+
+        // Agregamos el event listener para los nuevos botones de eliminar
+        document.querySelectorAll('.remove-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const indexToRemove = e.target.getAttribute('data-index');
+                cart.splice(indexToRemove, 1);
+                updateCart(); // Volvemos a llamar a la función para actualizar la vista
+            });
         });
 
         cartTotalSpan.textContent = total;
@@ -87,37 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 alert('Por favor, completa todos los campos.');
             }
-        });
-    }
-
-    // Lógica para el filtro de productos (si ya la agregaste)
-    const sortSelect = document.getElementById('sort');
-    const productGrid = document.querySelector('.product-grid');
-    const productCards = Array.from(document.querySelectorAll('.product-card'));
-
-    if (sortSelect && productGrid) {
-        sortSelect.addEventListener('change', (e) => {
-            const value = e.target.value;
-            let sortedCards = [...productCards];
-
-            if (value === 'price-asc') {
-                sortedCards.sort((a, b) => {
-                    const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('$', ''));
-                    const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('$', ''));
-                    return priceA - priceB;
-                });
-            } else if (value === 'price-desc') {
-                sortedCards.sort((a, b) => {
-                    const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('$', ''));
-                    const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('$', ''));
-                    return priceB - priceA;
-                });
-            }
-
-            productGrid.innerHTML = '';
-            sortedCards.forEach(card => {
-                productGrid.appendChild(card);
-            });
         });
     }
 });
