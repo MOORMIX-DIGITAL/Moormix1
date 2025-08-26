@@ -1,1 +1,92 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - TechMóvil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Catálogo de Productos</h1>
+        <p>Encuentra el celular perfecto para ti.</p>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <button id="contact-button">Contacto</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300" alt="Celular Samsung" class="product-image">
+            <h2 class="product-name">Samsung Galaxy S24</h2>
+            <p class="product-description">La última tecnología de Samsung con una cámara impresionante y rendimiento de IA.</p>
+            <p class="product-price">$999</p>
+            <button class="buy-button">Añadir al carrito</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300" alt="Celular iPhone" class="product-image">
+            <h2 class="product-name">iPhone 16</h2>
+            <p class="product-description">El nuevo modelo de Apple con un diseño elegante y chip ultra rápido.</p>
+            <p class="product-price">$1199</p>
+            <button class="buy-button">Añadir al carrito</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300" alt="Celular Google Pixel" class="product-image">
+            <h2 class="product-name">Google Pixel 9</h2>
+            <p class="product-description">Teléfono con la mejor cámara en su clase y la experiencia de Android más pura.</p>
+            <p class="product-price">$799</p>
+            <button class="buy-button">Añadir al carrito</button>
+        </div>
+        
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300" alt="Celular Xiaomi" class="product-image">
+            <h2 class="product-name">Xiaomi 15</h2>
+            <p class="product-description">Potencia y gran batería a un precio inmejorable.</p>
+            <p class="product-price">$549</p>
+            <button class="buy-button">Añadir al carrito</button>
+        </div>
+
+    </main>
+    
+    <section class="cart-container">
+        <h2>Carrito de Compras</h2>
+        <div id="cart-items">
+            </div>
+        <div class="cart-total">
+            <h3>Total: $<span id="cart-total-price">0</span></h3>
+            <button id="checkout-button" style="display: none;">Ir a Pagar</button>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <section class="contact-form">
+                <h2>Contáctanos</h2>
+                <form action="#">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <button type="submit">Enviar Mensaje</button>
+                </form>
+            </section>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 TechMóvil. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
