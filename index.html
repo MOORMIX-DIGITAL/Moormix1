@@ -3,17 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechMóvil</title>
+    <title>Moormix Digital</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>¡Bienvenido a Moormix Digital</h1>
+        <div class="header-content">
+            <a href="index.html" class="logo">Moormix Digital</a>
+            <nav>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="rastreo.html">Rastreo</a>
+                <button id="contact-button">Contacto</button>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <p>Tu sitio web está funcionando. ¡Hemos reiniciado la base!</p>
+    <main class="container">
+        <section class="hero-section">
+            <h1>¡Bienvenido a Moormix Digital!</h1>
+            <p>Descubre lo último en tecnología móvil con nuestros precios inigualables.</p>
+            <a href="catalogo.html" class="cta-button">Ver Teléfonos</a>
+        </section>
+
+        <section class="featured-section">
+            <h2>Productos Destacados</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://m.media-amazon.com/images/I/71yzM6kLqBL._AC_UF894,1000_QL80_.jpg" alt="Samsung Galaxy A54 5G" class="product-image">
+                    <h3 class="product-name">Samsung Galaxy A54 5G</h3>
+                    <p class="product-price">$300</p>
+                    <button class="buy-button">Comprar</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://cdn.shopify.com/s/files/1/0252/6406/3397/files/Samsung_Galaxy_A24_1.jpg?v=1684334313" alt="Samsung Galaxy A24" class="product-image">
+                    <h3 class="product-name">Samsung Galaxy A24</h3>
+                    <p class="product-price">$220</p>
+                    <button class="buy-button">Comprar</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://tienda.movistar.com.ec/media/catalog/product/cache/6b36154625b331002ac5964f43c3f054/s/a/samsung-galaxy-s23-ultra-color-verde-frontal_1.jpg" alt="Samsung Galaxy S23 Ultra" class="product-image">
+                    <h3 class="product-name">Samsung Galaxy S23 Ultra</h3>
+                    <p class="product-price">$950</p>
+                    <button class="buy-button">Comprar</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="cart-container" style="display: none;">
+            <h2>Carrito de Compras</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total-price">0</span></strong>
+            </div>
+            <button id="checkout-button" class="cta-button">Ir a Pagar</button>
+        </section>
     </main>
 
+    <footer>
+        <p>&copy; 2025 Moormix Digital. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
