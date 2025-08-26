@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,180 +9,114 @@
 <body>
 
     <header>
-        <h1>Catálogo de Productos</h1>
-        <p>Encuentra el celular perfecto para ti.</p>
-<nav>
-    <a href="index.html">Inicio</a>
-    <a href="catalogo.html">Catálogo</a>
-    <a href="rastreo.html">Rastreo</a>
-    <button id="contact-button">Contacto</button>
-</nav>
+        <div class="header-content">
+            <a href="index.html" class="logo">TechMóvil</a>
+            <nav>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="rastreo.html">Rastreo</a>
+                <button id="contact-button">Contacto</button>
+            </nav>
+        </div>
     </header>
 
     <main class="container">
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="Celular Samsung" class="product-image">
-            <h2 class="product-name">Samsung Galaxy S24</h2>
-            <p class="product-description">La última tecnología de Samsung con una cámara impresionante y rendimiento de IA.</p>
-            <p class="product-price">$999</p>
-            <button class="buy-button">Añadir al carrito</button>
-        </div>
-
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="Celular iPhone" class="product-image">
-            <h2 class="product-name">iPhone 16</h2>
-            <p class="product-description">El nuevo modelo de Apple con un diseño elegante y chip ultra rápido.</p>
-            <p class="product-price">$1199</p>
-            <button class="buy-button">Añadir al carrito</button>
-        </div>
-
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="Celular Google Pixel" class="product-image">
-            <h2 class="product-name">Google Pixel 9</h2>
-            <p class="product-description">Teléfono con la mejor cámara en su clase y la experiencia de Android más pura.</p>
-            <p class="product-price">$799</p>
-            <button class="buy-button">Añadir al carrito</button>
-        </div>
+        <section class="catalog-header">
+            <h1>Nuestro Catálogo de Teléfonos</h1>
+            <div class="filter-sort">
+                <label for="sort">Ordenar por:</label>
+                <select id="sort">
+                    <option value="default">Seleccionar</option>
+                    <option value="price-asc">Precio: Menor a Mayor</option>
+                    <option value="price-desc">Precio: Mayor a Menor</option>
+                </select>
+            </div>
+        </section>
         
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="Celular Xiaomi" class="product-image">
-            <h2 class="product-name">Xiaomi 15</h2>
-            <p class="product-description">Potencia y gran batería a un precio inmejorable.</p>
-            <p class="product-price">$549</p>
-            <button class="buy-button">Añadir al carrito</button>
-        </div>
+        <section class="products-section">
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://m.media-amazon.com/images/I/71yzM6kLqBL._AC_UF894,1000_QL80_.jpg" alt="Samsung Galaxy A54 5G" class="product-image">
+                    <h3 class="product-name">Samsung Galaxy A54 5G</h3>
+                    <p class="product-price">$300</p>
+                    <button class="buy-button">Comprar</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://cdn.shopify.com/s/files/1/0252/6406/3397/files/Samsung_Galaxy_A24_1.jpg?v=1684334313" alt="Samsung Galaxy A24" class="product-image">
+                    <h3 class="product-name">Samsung Galaxy A24</h3>
+                    <p class="product-price">$220</p>
+                    <button class="buy-button">Comprar</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://tienda.movistar.com.ec/media/catalog/product/cache/6b36154625b331002ac5964f43c3f054/s/a/samsung-galaxy-s23-ultra-color-verde-frontal_1.jpg" alt="Samsung Galaxy S23 Ultra" class="product-image">
+                    <h3 class="product-name">Samsung Galaxy S23 Ultra</h3>
+                    <p class="product-price">$950</p>
+                    <button class="buy-button">Comprar</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://cdn.movertix.com/spree/images/1301/product/xiaomi-redmi-note-13-5g-negro-1.jpg" alt="Xiaomi Redmi Note 13" class="product-image">
+                    <h3 class="product-name">Xiaomi Redmi Note 13</h3>
+                    <p class="product-price">$250</p>
+                    <button class="buy-button">Comprar</button>
+                </div>
+            </div>
+        </section>
 
+        <section class="cart-container">
+            <h2>Carrito de Compras</h2>
+
+            <div class="shipping-selector">
+                <label for="province-select">Selecciona tu Provincia:</label>
+                <select id="province-select" name="province">
+                    <option value="">Selecciona...</option>
+                </select>
+                <br>
+                <label for="canton-select">Selecciona tu Cantón:</label>
+                <select id="canton-select" name="canton" disabled>
+                    <option value="">Selecciona...</option>
+                </select>
+                <br>
+                <label for="parish-select">Selecciona tu Parroquia:</label>
+                <select id="parish-select" name="parish" disabled>
+                    <option value="">Selecciona...</option>
+                </select>
+            </div>
+            <p class="shipping-note">
+                <small>El envío es a la oficina de Servientrega más cercana a tu ubicación. Te contactaremos para confirmar la dirección exacta.</small>
+            </p>
+            <p class="find-location">
+                ¿No sabes cuál es tu oficina más cercana? <a href="https://www.servientrega.com.ec/oficinas-servientrega-ecuador/" target="_blank">Encuentra una aquí.</a>
+            </p>
+
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total-price">0</span></strong>
+            </div>
+            <button id="checkout-button" class="cta-button">Ir a Pagar</button>
+        </section>
     </main>
-    
-   <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba de Envío</title>
-    <style>
-        .cart-container {
-            width: 90%;
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-family: Arial, sans-serif;
-        }
-        .shipping-selector label, .shipping-selector select {
-            display: block;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
 
-    <section class="cart-container">
-        <h2>Prueba de Envío</h2>
-        <div class="shipping-selector">
-            <label for="province-select">Selecciona tu Provincia:</label>
-            <select id="province-select" name="province">
-                <option value="">Selecciona...</option>
-            </select>
-            <br>
-            <label for="canton-select">Selecciona tu Cantón:</label>
-            <select id="canton-select" name="canton" disabled>
-                <option value="">Selecciona...</option>
-            </select>
-            <br>
-            <label for="parish-select">Selecciona tu Parroquia:</label>
-            <select id="parish-select" name="parish" disabled>
-                <option value="">Selecciona...</option>
-            </select>
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="contact-form">
+                <h3>Contáctanos</h3>
+                <form>
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <button type="submit" class="submit-button">Enviar Mensaje</button>
+                </form>
+            </div>
         </div>
-        <br>
-        <p>Costo de Envío: <span id="shipping-cost">$0.00</span></p>
-    </section>
+    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    <footer>
+        <p>&copy; 2025 TechMóvil. Todos los derechos reservados.</p>
+    </footer>
 
-            const shippingData = {
-                'pichincha': {
-                    'quito': {
-                        'carcelen': 6.00,
-                        'calderon': 6.50,
-                        'centro-historico': 6.00
-                    },
-                    'ruminahui': {
-                        'sangolqui': 6.50
-                    },
-                    'cayambe': {
-                        'cayambe': 7.00
-                    }
-                },
-                'guayas': {
-                    'guayaquil': {
-                        'guayaquil-centro': 6.00,
-                        'guayaquil-sur': 6.50
-                    },
-                    'duran': {
-                        'duran': 6.50
-                    },
-                    'samborondon': {
-                        'samborondon': 7.00
-                    }
-                }
-            };
-
-            const provinceSelect = document.getElementById('province-select');
-            const cantonSelect = document.getElementById('canton-select');
-            const parishSelect = document.getElementById('parish-select');
-            const shippingCostSpan = document.getElementById('shipping-cost');
-
-            function populateSelect(selectElement, data, defaultText) {
-                selectElement.innerHTML = `<option value="">${defaultText}</option>`;
-                selectElement.disabled = false;
-                if (data) {
-                    Object.keys(data).forEach(key => {
-                        const option = document.createElement('option');
-                        option.value = key;
-                        option.textContent = key.charAt(0).toUpperCase() + key.slice(1);
-                        selectElement.appendChild(option);
-                    });
-                } else {
-                    selectElement.disabled = true;
-                }
-            }
-
-            function updateShippingCost() {
-                let cost = 0;
-                const selectedProvince = provinceSelect.value;
-                const selectedCanton = cantonSelect.value;
-                const selectedParish = parishSelect.value;
-
-                if (selectedProvince && selectedCanton && selectedParish) {
-                    cost = shippingData[selectedProvince][selectedCanton][selectedParish];
-                }
-                shippingCostSpan.textContent = `$${cost.toFixed(2)}`;
-            }
-
-            populateSelect(provinceSelect, shippingData, 'Selecciona...');
-
-            provinceSelect.addEventListener('change', () => {
-                const selectedProvince = provinceSelect.value;
-                const cantons = selectedProvince ? shippingData[selectedProvince] : null;
-                populateSelect(cantonSelect, cantons, 'Selecciona un cantón...');
-                populateSelect(parishSelect, null, 'Selecciona una parroquia...');
-                updateShippingCost();
-            });
-
-            cantonSelect.addEventListener('change', () => {
-                const selectedProvince = provinceSelect.value;
-                const selectedCanton = cantonSelect.value;
-                const parishes = (selectedProvince && selectedCanton) ? shippingData[selectedProvince][selectedCanton] : null;
-                populateSelect(parishSelect, parishes, 'Selecciona una parroquia...');
-                updateShippingCost();
-            });
-
-            parishSelect.addEventListener('change', updateShippingCost);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
