@@ -57,6 +57,28 @@
     
     <section class="cart-container">
         <h2>Carrito de Compras</h2>
+        <div class="shipping-selector">
+    <label for="province-select">Selecciona tu Provincia:</label>
+    <select id="province-select" name="province">
+        <option value="">Selecciona...</option>
+    </select>
+    <br>
+    <label for="canton-select">Selecciona tu Cantón:</label>
+    <select id="canton-select" name="canton" disabled>
+        <option value="">Selecciona...</option>
+    </select>
+    <br>
+    <label for="parish-select">Selecciona tu Parroquia:</label>
+    <select id="parish-select" name="parish" disabled>
+        <option value="">Selecciona...</option>
+    </select>
+</div>
+<p class="shipping-note">
+    <small>El envío es a la oficina de Servientrega más cercana a tu ubicación. Te contactaremos para confirmar la dirección exacta.</small>
+</p>
+<p class="find-location">
+    ¿No sabes cuál es tu oficina más cercana? <a href="https://www.servientrega.com.ec/oficinas-servientrega-ecuador/" target="_blank">Encuentra una aquí.</a>
+</p>
         <div id="cart-items">
             </div>
         <div class="cart-total">
