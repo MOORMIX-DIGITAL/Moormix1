@@ -59,41 +59,34 @@ document.addEventListener('DOMContentLoaded', () => {
     if (provinceSelect) {
         populateSelect(provinceSelect, shippingData, 'Selecciona...');
     }
+
+    // Event Listeners para actualizar los selectores en cascada
+    if (provinceSelect) {
+        provinceSelect.addEventListener('change', () => {
+            const selectedProvince = provinceSelect.value;
+            const cantons = selectedProvince ? shippingData[selectedProvince] : null;
+            populateSelect(cantonSelect, cantons, 'Selecciona un cantón...');
+            populateSelect(parishSelect, null, 'Selecciona una parroquia...');
+            updateCart();
+        });
+    }
+
+    if (cantonSelect) {
+        cantonSelect.addEventListener('change', () => {
+            const selectedProvince = provinceSelect.value;
+            const selectedCanton = cantonSelect.value;
+            const parishes = (selectedProvince && selectedCanton) ? shippingData[selectedProvince][selectedCanton] : null;
+            populateSelect(parishSelect, parishes, 'Selecciona una parroquia...');
+            updateCart();
+        });
+    }
+
+    if (parishSelect) {
+        parishSelect.addEventListener('change', () => {
+            updateCart();
+        });
+    }
     
-    // Función principal para actualizar el carrito y calcular el total
-    function updateCart() {
-        let shippingCost = 0;
-        const selectedProvince = provinceSelect ? provinceSelect.value : '';
-        const selectedCanton = cantonSelect ? cantonSelect.value : '';
-        const selectedParish = parishSelect ? parishSelect.value : '';
-
-        if (selectedProvince && selectedCanton && selectedParish && shippingData[selectedProvince] && shippingData[selectedProvince][selectedCanton] && shippingData[selectedProvince][selectedCanton][selectedParish]) {
-            shippingCost = shippingData[selectedProvince][selectedCanton][selectedParish];
-        }
-
-        cartItemsDiv.innerHTML = '';
-        let subtotal = 0;
-
-        cart.forEach((item, index) => {
-            const itemElement = document.createElement('div');
-            itemElement.classList.add('cart-item');
-            itemElement.innerHTML = `
-                <span>${item.name}</span>
-                <span>$${item.price}</span>
-                <button class="remove-button" data-index="${index}">Eliminar</button>
-            `;
-            cartItemsDiv.appendChild(itemElement);
-            subtotal += item.price;
-        });
-
-        document.querySelectorAll('.remove-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const indexToRemove = e.target.getAttribute('data-index');
-                cart.splice(indexToRemove, 1);
-                updateCart();
-            });
-        });
-
         const total = subtotal + (cart.length > 0 && shippingCost ? shippingCost : 0);
 
         const summaryHtml = `
