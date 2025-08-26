@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+alert('¡Hola!');
 
     // Diccionario de costos de envío por provincia, cantón y parroquia
     const shippingData = {
