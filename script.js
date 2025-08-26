@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Lógica para los botones de compra (REEMPLAZAR)
+
+    // Lógica para los botones de compra y el carrito
     const botonesComprar = document.querySelectorAll('.buy-button');
     const cartContainer = document.querySelector('.cart-container');
     const cartItemsDiv = document.getElementById('cart-items');
@@ -37,19 +38,86 @@ document.addEventListener('DOMContentLoaded', () => {
             const productCard = e.target.closest('.product-card');
             const name = productCard.querySelector('.product-name').textContent;
             const price = parseFloat(productCard.querySelector('.product-price').textContent.replace('$', ''));
-            
+
             cart.push({ name, price });
             updateCart();
         });
     });
 
     checkoutButton.addEventListener('click', () => {
-        // Guardar el total en el almacenamiento local para la siguiente página
         localStorage.setItem('totalPrice', cartTotalSpan.textContent);
         window.location.href = 'pago-transferencia.html';
     });
-    
-    // ---
-    // (Mantener el resto de tu código JS aquí, como la lógica del formulario de contacto y los filtros)
-    // ---
+
+    // Lógica para mostrar y ocultar el modal de contacto
+    const contactButton = document.getElementById('contact-button');
+    const contactModal = document.getElementById('contact-modal');
+    const closeButton = document.querySelector('.modal-close');
+
+    if (contactButton && contactModal) {
+        contactButton.addEventListener('click', () => {
+            contactModal.classList.add('active');
+        });
+
+        closeButton.addEventListener('click', () => {
+            contactModal.classList.remove('active');
+        });
+
+        // Ocultar el modal si se hace clic fuera del contenido
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                contactModal.classList.remove('active');
+            }
+        });
+    }
+
+    // Lógica para el formulario de contacto
+    const formulario = document.querySelector('.contact-form form');
+    if (formulario) {
+        formulario.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nombre = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const mensaje = document.getElementById('message').value;
+
+            if (nombre && email && mensaje) {
+                alert('¡Mensaje enviado con éxito! Gracias por tu contacto.');
+                formulario.reset();
+                contactModal.classList.remove('active'); // Ocultar el modal después de enviar
+            } else {
+                alert('Por favor, completa todos los campos.');
+            }
+        });
+    }
+
+    // Lógica para el filtro de productos (si ya la agregaste)
+    const sortSelect = document.getElementById('sort');
+    const productGrid = document.querySelector('.product-grid');
+    const productCards = Array.from(document.querySelectorAll('.product-card'));
+
+    if (sortSelect && productGrid) {
+        sortSelect.addEventListener('change', (e) => {
+            const value = e.target.value;
+            let sortedCards = [...productCards];
+
+            if (value === 'price-asc') {
+                sortedCards.sort((a, b) => {
+                    const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('$', ''));
+                    const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('$', ''));
+                    return priceA - priceB;
+                });
+            } else if (value === 'price-desc') {
+                sortedCards.sort((a, b) => {
+                    const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('$', ''));
+                    const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('$', ''));
+                    return priceB - priceA;
+                });
+            }
+
+            productGrid.innerHTML = '';
+            sortedCards.forEach(card => {
+                productGrid.appendChild(card);
+            });
+        });
+    }
 });
