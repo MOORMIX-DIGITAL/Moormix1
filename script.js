@@ -100,3 +100,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Lógica para el rastreo de pedidos
+const trackButton = document.getElementById('trackButton');
+const trackingInput = document.getElementById('trackingNumber');
+
+if (trackButton && trackingInput) {
+    trackButton.addEventListener('click', () => {
+        const trackingNumber = trackingInput.value;
+        if (trackingNumber) {
+            // URL de rastreo de Servientrega. El número de guía va al final.
+            const servientregaURL = `https://www.servientrega.com.ec/rastreo-de-envios?guia=${trackingNumber}`;
+            window.open(servientregaURL, '_blank');
+        } else {
+            alert('Por favor, ingresa un número de guía válido.');
+        }
+    });
+}
