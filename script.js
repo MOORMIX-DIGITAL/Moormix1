@@ -191,33 +191,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Lógica para el filtro de productos
-    const sortSelect = document.getElementById('sort');
-    const productGrid = document.querySelector('.product-grid');
-    const productCards = Array.from(document.querySelectorAll('.product-card'));
-    if (sortSelect && productGrid) {
-        sortSelect.addEventListener('change', (e) => {
-            const value = e.target.value;
-            let sortedCards = [...productCards];
-            if (value === 'price-asc') {
-                sortedCards.sort((a, b) => {
-                    const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('$', ''));
-                    const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('$', ''));
-                    return priceA - priceB;
-                });
-            } else if (value === 'price-desc') {
-                sortedCards.sort((a, b) => {
-                    const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('$', ''));
-                    const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('$', ''));
-                    return priceB - priceA;
-                });
-            }
-            productGrid.innerHTML = '';
-            sortedCards.forEach(card => {
-                productGrid.appendChild(card);
-            });
-        });
-    }
-
 });
