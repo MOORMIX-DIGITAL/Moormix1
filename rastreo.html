@@ -3,69 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rastreo de Pedido</title>
+    <title>Rastreo de Pedidos - Moormix Digital</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .tracking-container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .tracking-container h2 {
-            color: #007bff;
-            margin-bottom: 20px;
-        }
-        .tracking-container p {
-            margin-bottom: 20px;
-        }
-        .tracking-container input {
-            width: 80%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        .tracking-container button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .tracking-container button:hover {
-            background-color: #218838;
-        }
-    </style>
 </head>
 <body>
 
     <header>
-        <h1>Rastreo de Pedido</h1>
-        <p>Sigue tu envío en tiempo real.</p>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="catalogo.html">Catálogo</a>
-            <button id="contact-button">Contacto</button>
-        </nav>
+        <div class="header-content">
+            <a href="index.html" class="logo">Moormix Digital</a>
+            <nav>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="rastreo.html">Rastreo</a>
+                <button id="contact-button">Contacto</button>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <div class="tracking-container">
-            <h2>Ingresa tu Número de Guía</h2>
-            <p>Ingresa el número de guía que te enviamos por correo o WhatsApp para rastrear tu pedido.</p>
-            <input type="text" id="trackingNumber" placeholder="Ej: 123456789">
-            <button id="trackButton">Rastrear</button>
-        </div>
+    <main class="container">
+        <section class="tracking-section">
+            <h1>Rastreo de Pedidos</h1>
+            <p>Ingresa el número de guía de tu pedido para ver su estado y ubicación.</p>
+            
+            <div class="tracking-form">
+                <input type="text" id="tracking-number" placeholder="Ingresa tu número de guía">
+                <a href="#" id="track-button" class="cta-button">Rastrear</a>
+            </div>
+            
+            <div id="tracking-results">
+                </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 TechMóvil. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Moormix Digital. Todos los derechos reservados.</p>
     </footer>
 
     <script src="script.js"></script>
