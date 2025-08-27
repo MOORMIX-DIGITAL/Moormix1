@@ -152,6 +152,7 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor: pointer; /* Importante para indicar que es clickeable */
 }
 
 .product-card:hover {
@@ -190,6 +191,7 @@ nav a:hover {
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
     font-weight: 600;
     box-shadow: var(--shadow-light);
+    pointer-events: all; /* Permite el clic en el botón dentro de la tarjeta */
 }
 
 .product-card .buy-button:hover {
@@ -198,23 +200,128 @@ nav a:hover {
     box-shadow: var(--shadow-medium);
 }
 
-/* Cart */
-.cart-container {
+/* MODALES */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
     background-color: var(--white);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: var(--shadow-medium);
-    margin-top: 40px;
-    display: none; /* Se oculta por defecto */
-}
-
-.cart-container h2 {
-    text-align: center;
-    margin-bottom: 30px;
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 900px;
+    width: 90%;
     position: relative;
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-50px);
+    transition: transform 0.3s ease-out;
 }
 
-.cart-container h2::after {
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 2.5rem;
+    color: var(--light-text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-button:hover {
+    color: var(--accent-color);
+}
+
+.modal-body {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* Estilos específicos para el modal de productos */
+.product-gallery {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-gallery .main-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    margin-bottom: 20px;
+}
+
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.thumbnail-container img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.thumbnail-container img:hover, .thumbnail-container img.active {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.product-details-content {
+    flex: 1 1 50%;
+}
+
+.product-details-content h2 {
+    font-size: 2.5rem;
+    margin-top: 0;
+}
+
+.product-details-content .product-price {
+    font-size: 2rem;
+}
+
+/* Estilos del carrito dentro del modal */
+.modal-body h2 {
+    text-align: center;
+    width: 100%;
+}
+
+.modal-body h2::after {
     content: '';
     display: block;
     width: 60px;
@@ -278,9 +385,9 @@ nav a:hover {
     border: 1px solid var(--border-color);
     margin: 5px 10px;
     font-size: 1rem;
-    background-color: var(--white);
-    appearance: none; /* Elimina estilos por defecto del select */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232c3e50%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.9%204.9-4.8%2011.6-2.6%2017.6l139%20168.6c4.5%205.4%2010.8%208.1%2017.2%208.1s12.7-2.7%2017.2-8.1l139-168.6c2.2-6-1.5-12.7-2.6-17.6z%22%2F%3E%3C%2Fsvg%3E'); /* Flecha personalizada */
+    background-color: var(--background-light);
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232c3e50%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.9%204.9-4.8%2011.6-2.6%2017.6l139%20168.6c4.5%205.4%2010.8%208.1%2017.2%208.1s12.7-2.7%2017.2-8.1l139-168.6c2.2-6-1.5-12.7-2.6-17.6z%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 12px;
@@ -288,45 +395,20 @@ nav a:hover {
     cursor: pointer;
 }
 
-.cart-summary {
-    font-size: 1.1rem;
-    text-align: right;
-    margin-top: 15px;
-    border-top: 1px solid var(--border-color);
-    padding-top: 15px;
-    color: var(--light-text-color);
-}
-
-.cart-summary p {
-    margin: 8px 0;
-}
-
 #checkout-button {
     width: 100%;
     margin-top: 30px;
-    display: none;
     font-size: 1.2rem;
 }
 
-/* Contact Section */
-.contact-section {
+/* Estilos de contacto y pago */
+.contact-section, .payment-section {
     text-align: center;
     background-color: var(--white);
     padding: 50px;
     border-radius: 10px;
     box-shadow: var(--shadow-medium);
 }
-
-.contact-section h1 {
-    margin-bottom: 20px;
-}
-
-.contact-section p {
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    color: var(--light-text-color);
-}
-
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -334,7 +416,6 @@ nav a:hover {
     max-width: 600px;
     margin: 0 auto;
 }
-
 .contact-form input,
 .contact-form textarea {
     padding: 15px;
@@ -346,45 +427,22 @@ nav a:hover {
     background-color: var(--background-light);
     transition: border-color 0.3s, box-shadow 0.3s;
 }
-
 .contact-form input:focus,
 .contact-form textarea:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
     outline: none;
 }
-
 .contact-form textarea {
     resize: vertical;
     min-height: 150px;
 }
-
 #send-button {
-    align-self: center; /* Centrar el botón */
+    align-self: center;
     width: auto;
     padding: 15px 40px;
     font-size: 1.1rem;
 }
-
-/* Payment Section */
-.payment-section {
-    text-align: center;
-    background-color: var(--white);
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: var(--shadow-medium);
-}
-
-.payment-section h1 {
-    margin-bottom: 20px;
-}
-
-.payment-section p {
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    color: var(--light-text-color);
-}
-
 .payment-details {
     text-align: left;
     margin-top: 40px;
@@ -393,7 +451,6 @@ nav a:hover {
     border-radius: 10px;
     box-shadow: var(--shadow-light);
 }
-
 .payment-details h3 {
     text-align: center;
     border-bottom: 2px solid var(--primary-color);
@@ -401,24 +458,20 @@ nav a:hover {
     margin-bottom: 30px;
     font-size: 1.9rem;
 }
-
 .payment-details p {
     margin: 10px 0;
     font-size: 1.1rem;
     color: var(--text-color);
 }
-
 .payment-details p strong {
     color: var(--secondary-color);
     font-weight: 700;
 }
-
 .order-summary {
     margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 1px dashed var(--border-color);
 }
-
 .order-summary p {
     display: flex;
     justify-content: space-between;
@@ -426,14 +479,12 @@ nav a:hover {
     font-size: 1.2rem;
     margin: 8px 0;
 }
-
 .order-summary hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--border-color), rgba(0, 0, 0, 0));
     margin: 20px 0;
 }
-
 .total-price {
     font-size: 2rem !important;
     font-weight: bold;
@@ -441,11 +492,9 @@ nav a:hover {
     color: var(--accent-color);
     margin-top: 20px;
 }
-
 .total-price span {
     color: var(--accent-color);
 }
-
 .bank-info {
     margin-bottom: 25px;
     padding: 20px;
@@ -454,7 +503,6 @@ nav a:hover {
     box-shadow: var(--shadow-light);
     border: 1px solid var(--border-color);
 }
-
 .bank-info h4 {
     margin-top: 0;
     font-size: 1.6rem;
@@ -464,20 +512,18 @@ nav a:hover {
     margin-bottom: 15px;
     text-align: center;
 }
-
 .important-note {
     font-size: 1rem;
     color: var(--light-text-color);
     margin-top: 30px;
     padding: 15px;
-    border: 2px dashed var(--primary-color); /* Borde más distintivo */
+    border: 2px dashed var(--primary-color);
     border-radius: 8px;
-    background-color: #eaf6fd; /* Fondo suave para la nota */
+    background-color: #eaf6fd;
     font-weight: 500;
 }
-
 .whatsapp-button {
-    background-color: #25D366; /* Color de WhatsApp */
+    background-color: #25D366;
     color: var(--white);
     padding: 15px 35px;
     border-radius: 30px;
@@ -489,7 +535,6 @@ nav a:hover {
     font-size: 1.1rem;
     box-shadow: var(--shadow-light);
 }
-
 .whatsapp-button:hover {
     background-color: #128C7E;
     transform: translateY(-2px);
@@ -512,6 +557,7 @@ footer {
     .hero-section p { font-size: 1.3rem; }
     .product-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
     .select-group select { margin: 5px; }
+    .modal-body { flex-direction: column; }
 }
 
 @media (max-width: 768px) {
@@ -532,7 +578,7 @@ footer {
     .hero-section p { font-size: 1.1rem; }
     .products-section, .catalog-section, .contact-section, .payment-section { padding: 40px 0; }
     .product-grid { gap: 20px; }
-    .cart-container, .contact-section, .payment-section { padding: 25px; }
+    .contact-section, .payment-section { padding: 25px; }
     .payment-details { padding: 20px; }
     .payment-details h3 { font-size: 1.6rem; }
     .bank-info h4 { font-size: 1.4rem; }
