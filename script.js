@@ -163,35 +163,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-   // Lógica para ir a la página de pago
-if (checkoutButton) {
-    checkoutButton.addEventListener('click', () => {
-        const selectedProvince = provinceSelect ? provinceSelect.value : '';
-        const selectedCanton = cantonSelect ? cantonSelect.value : '';
-        const selectedParish = parishSelect ? parishSelect.value : '';
+    // Lógica para ir a la página de pago
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', () => {
+            const selectedProvince = provinceSelect ? provinceSelect.value : '';
+            const selectedCanton = cantonSelect ? cantonSelect.value : '';
+            const selectedParish = parishSelect ? parishSelect.value : '';
 
-        let shippingCost = 0;
-        if (selectedProvince && selectedCanton && selectedParish && shippingData[selectedProvince] && shippingData[selectedProvince][selectedCanton] && shippingData[selectedProvince][selectedCanton][selectedParish]) {
-            shippingCost = shippingData[selectedProvince][selectedCanton][selectedParish];
-        }
+            let shippingCost = 0;
+            if (selectedProvince && selectedCanton && selectedParish && shippingData[selectedProvince] && shippingData[selectedProvince][selectedCanton] && shippingData[selectedProvince][selectedCanton][selectedParish]) {
+                shippingCost = shippingData[selectedProvince][selectedCanton][selectedParish];
+            }
+            
+            localStorage.setItem('shippingCost', shippingCost.toFixed(2));
+            localStorage.setItem('totalPrice', cartTotalSpan.textContent);
+            
+            window.location.href = 'pago-transferencia.html';
+        });
+    }
 
-        localStorage.setItem('shippingCost', shippingCost.toFixed(2));
-        localStorage.setItem('totalPrice', cartTotalSpan.textContent);
-
-        window.location.href = 'pago-transferencia.html';
-
-        const paymentTotalSpan = document.getElementById('payment-total');
+    // Lógica para mostrar el total en la página de pago
+    const paymentTotalSpan = document.getElementById('payment-total');
     const paymentShippingSpan = document.getElementById('payment-shipping');
     const paymentSubtotalSpan = document.getElementById('payment-subtotal');
-
+    
     if (paymentTotalSpan && paymentShippingSpan && paymentSubtotalSpan) {
         const totalPrice = localStorage.getItem('totalPrice');
         const shippingCost = localStorage.getItem('shippingCost');
         const subtotal = (parseFloat(totalPrice) - parseFloat(shippingCost)).toFixed(2);
-
+        
         paymentTotalSpan.textContent = `$${totalPrice}`;
         paymentShippingSpan.textContent = `$${shippingCost}`;
         paymentSubtotalSpan.textContent = `$${subtotal}`;
     }
-    });
-}
+});
