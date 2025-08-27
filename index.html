@@ -3,75 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moormix Digital</title>
+    <title>Moormix Digital - Inicio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="header-content">
-            <nav>
             <a href="index.html" class="logo">Moormix Digital</a>
-    <a href="catalogo.html">Catálogo</a>
-    <a href="contacto.html">Contacto</a>
-</nav>
+            <nav>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
         </div>
     </header>
 
     <main class="container">
         <section class="hero-section">
-            <h1>¡Bienvenido a Moormix Digital!</h1>
-            <p>Descubre lo último en tecnología móvil con nuestros precios inigualables.</p>
-            <a href="catalogo.html" class="cta-button">Ver Teléfonos</a>
+            <h1>Bienvenido a Moormix Digital</h1>
+            <p>Tu tienda de electrónica de confianza. ¡Encuentra los mejores productos a precios increíbles!</p>
+            <a href="catalogo.html" class="cta-button">Ver Catálogo</a>
         </section>
 
-        <section class="featured-section">
+        <section class="products-section">
             <h2>Productos Destacados</h2>
             <div class="product-grid">
                 <div class="product-card">
-                   <img src="https://images.samsung.com/is/image/samsung/p6-160-in-galaxy-a-a54-5g-sm-a546e-16gb-8gb-sm-a546ezgains-536767784" alt="Samsung Galaxy A54 5G" class="product-image">
+                    <img src="https://m.media-amazon.com/images/I/71yzM6kLqBL._AC_UF894,1000_QL80_.jpg" alt="Samsung Galaxy A54 5G" class="product-image">
                     <h3 class="product-name">Samsung Galaxy A54 5G</h3>
                     <p class="product-price">$300</p>
                     <button class="buy-button">Comprar</button>
                 </div>
                 <div class="product-card">
-                    <img src="https://cdn.shopify.com/s/files/1/0252/6406/3397/files/Samsung_Galaxy_A24_1.jpg?v=1684334313" alt="Samsung Galaxy A24" class="product-image">
-                    <h3 class="product-name">Samsung Galaxy A24</h3>
-                    <p class="product-price">$220</p>
+                    <img src="https://images.samsung.com/is/image/samsung/p6-160-in-galaxy-a-a54-5g-sm-a546e-16gb-8gb-sm-a546ezgains-536767784" alt="Xiaomi Redmi Note 12 Pro" class="product-image">
+                    <h3 class="product-name">Xiaomi Redmi Note 12 Pro</h3>
+                    <p class="product-price">$250</p>
                     <button class="buy-button">Comprar</button>
                 </div>
                 <div class="product-card">
-                    <img src="https://tienda.movistar.com.ec/media/catalog/product/cache/6b36154625b331002ac5964f43c3f054/s/a/samsung-galaxy-s23-ultra-color-verde-frontal_1.jpg" alt="Samsung Galaxy S23 Ultra" class="product-image">
-                    <h3 class="product-name">Samsung Galaxy S23 Ultra</h3>
-                    <p class="product-price">$950</p>
+                    <img src="https://m.media-amazon.com/images/I/61kYn83v+IL.jpg" alt="Apple iPhone 14" class="product-image">
+                    <h3 class="product-name">Apple iPhone 14</h3>
+                    <p class="product-price">$800</p>
                     <button class="buy-button">Comprar</button>
                 </div>
             </div>
         </section>
 
-        <section class="cart-container" style="display: none;">
-            <h2>Carrito de Compras</h2>
-            
-            <div class="shipping-selector">
-                <label for="province-select">Selecciona tu Provincia:</label>
-                <select id="province-select" name="province">
-                    <option value="">Selecciona...</option>
-                </select>
-                <br>
-                <label for="canton-select">Selecciona tu Cantón:</label>
-                <select id="canton-select" name="canton" disabled>
-                    <option value="">Selecciona...</option>
-                </select>
-                <br>
-                <label for="parish-select">Selecciona tu Parroquia:</label>
-                <select id="parish-select" name="parish" disabled>
-                    <option value="">Selecciona...</option>
-                </select>
-            </div>
-            
+        <section class="cart-container">
+            <h2>Tu Carrito</h2>
             <div id="cart-items"></div>
             <div class="cart-total">
-                <strong>Total: $<span id="cart-total-price">0</span></strong>
+                <p>Total: <span id="cart-total-price">$0</span></p>
+            </div>
+            <div class="shipping-section">
+                <h3>Datos de Envío</h3>
+                <div class="select-group">
+                    <select id="province-select"></select>
+                    <select id="canton-select"></select>
+                    <select id="parish-select"></select>
+                </div>
             </div>
             <button id="checkout-button" class="cta-button">Ir a Pagar</button>
         </section>
