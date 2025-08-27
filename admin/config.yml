@@ -1,0 +1,22 @@
+backend:
+  name: github
+  repo: MOORMIX-DIGITAL/Moormix1
+  branch: main
+  base_url: https://api.netlify.com/auth
+  auth_type: implicit
+  app_id: your-app-id # Este se usará en un paso posterior
+
+media_folder: "img"
+public_folder: "/img"
+
+collections:
+  - name: "products"
+    label: "Productos"
+    folder: "data/products"
+    create: true
+    slug: "{{fields.name}}"
+    fields:
+      - {label: "Nombre del Producto", name: "name", widget: "string"}
+      - {label: "Precio", name: "price", widget: "number"}
+      - {label: "Descripción", name: "description", widget: "markdown"}
+      - {label: "Imagen Principal", name: "image", widget: "image"}
