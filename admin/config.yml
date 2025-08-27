@@ -21,3 +21,4 @@ collections:
       - {label: "Precio", name: "price", widget: "number"}
       - {label: "Descripción", name: "description", widget: "markdown"}
       - {label: "Imagen Principal", name: "image", widget: "image"}
+      - {label: 'Precio a crédito', name: 'credit_price', widget: 'number'}
