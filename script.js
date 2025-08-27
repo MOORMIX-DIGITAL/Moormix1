@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    // Diccionario de costos de envío por provincia, cantón y parroquia
     const shippingData = {
         'pichincha': {
             'quito': {
@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 'samborondon': 7.00
             }
         },
-        // Añade aquí los datos para todas las provincias, cantones y parroquias que necesites
     };
 
+    // Referencias a los selectores HTML
     const provinceSelect = document.getElementById('province-select');
     const cantonSelect = document.getElementById('canton-select');
     const parishSelect = document.getElementById('parish-select');
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let cart = [];
 
+    // Función para llenar los selectores
     function populateSelect(selectElement, data, defaultText) {
         if (!selectElement) return;
         selectElement.innerHTML = `<option value="">${defaultText}</option>`;
@@ -60,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (provinceSelect) {
         populateSelect(provinceSelect, shippingData, 'Selecciona...');
     }
-    
+
     // Event Listeners para actualizar los selectores en cascada
     if (provinceSelect) {
         provinceSelect.addEventListener('change', () => {
@@ -87,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCart();
         });
     }
-    
+
     // Función principal para actualizar el carrito y calcular el total
     function updateCart() {
         if (!cartItemsDiv || !cartTotalSpan || !cartContainer) return;
@@ -148,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
+
     // Lógica para añadir productos al carrito
     if (botonesComprar) {
         botonesComprar.forEach(boton => {
