@@ -190,9 +190,29 @@ document.addEventListener('DOMContentLoaded', () => {
         paymentSubtotalSpan.textContent = `$${subtotal}`;
     }
 
+// Lógica para la página de rastreo
     const trackButton = document.getElementById('track-button');
     const trackingNumberInput = document.getElementById('tracking-number');
     const trackingResultsDiv = document.getElementById('tracking-results');
+
+    // Datos de rastreo de ejemplo (simulación)
+    const trackingData = {
+        '123456789': {
+            status: 'En tránsito',
+            location: 'Guayaquil, Ecuador',
+            date: '27 de agosto, 2025'
+        },
+        '987654321': {
+            status: 'Entregado',
+            location: 'Quito, Ecuador',
+            date: '25 de agosto, 2025'
+        },
+        '112233445': {
+            status: 'En preparación',
+            location: 'Cuenca, Ecuador',
+            date: '28 de agosto, 2025'
+        }
+    };
 
     if (trackButton && trackingNumberInput && trackingResultsDiv) {
         trackButton.addEventListener('click', (e) => {
@@ -207,17 +227,24 @@ document.addEventListener('DOMContentLoaded', () => {
             trackingResultsDiv.innerHTML = '<p>Buscando el estado de tu pedido...</p>';
 
             setTimeout(() => {
-                const trackingStatus = `
-                    <div class="tracking-status">
-                        <h3>Estado del Pedido:</h3>
-                        <p><strong>Número de Guía:</strong> ${trackingNumber}</p>
-                        <p><strong>Estado:</strong> En tránsito</p>
-                        <p><strong>Ubicación Actual:</strong> Quito, Ecuador</p>
-                        <p><strong>Fecha Estimada de Entrega:</strong> 2-3 días hábiles</p>
-                    </div>
-                `;
-                trackingResultsDiv.innerHTML = trackingStatus;
-            }, 2000);
+                const orderStatus = trackingData[trackingNumber];
+                let trackingStatusHtml = '';
+
+                if (orderStatus) {
+                    trackingStatusHtml = `
+                        <div class="tracking-status">
+                            <h3>Estado del Pedido:</h3>
+                            <p><strong>Número de Guía:</strong> ${trackingNumber}</p>
+                            <p><strong>Estado:</strong> ${orderStatus.status}</p>
+                            <p><strong>Ubicación Actual:</strong> ${orderStatus.location}</p>
+                            <p><strong>Fecha de Actualización:</strong> ${orderStatus.date}</p>
+                        </div>
+                    `;
+                } else {
+                    trackingStatusHtml = '<p class="error">Número de guía no encontrado. Por favor, verifica el número e inténtalo de nuevo.</p>';
+                }
+
+                trackingResultsDiv.innerHTML = trackingStatusHtml;
+            }, 2000); // Simula un retraso de 2 segundos
         });
     }
-});
