@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: tu-nombre-de-usuario/tu-repositorio
+  repo: MOORMIX-DIGITAL/Moormix1
   branch: main
   base_url: https://api.netlify.com/auth
   auth_type: implicit
