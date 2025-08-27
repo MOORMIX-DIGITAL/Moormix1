@@ -1,9 +1,8 @@
 backend:
-  name: github
-  repo: MOORMIX-DIGITAL/Moormix1
+  name: git-gateway
   branch: main
-  auth_type: pkce # Esto es más seguro y fiable
-  app_id: Ov23linMVS5JUXJ4PcE1 # Tu app_id debe ir solo, sin texto extra
+  identity_url: 'https://moormixdigital.netlify.app/.netlify/identity'
+  gateway_url: 'https://moormixdigital.netlify.app/.netlify/git'
 
 local_backend: true
 media_folder: "img"
