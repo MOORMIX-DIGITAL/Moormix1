@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cart = [];
 
     function populateSelect(selectElement, data, defaultText) {
-        if (!selectElement) return; // Validación para evitar errores si el elemento no existe
+        if (!selectElement) return;
         selectElement.innerHTML = `<option value="">${defaultText}</option>`;
         selectElement.disabled = false;
         if (data) {
@@ -56,10 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Llenar el selector de provincias al cargar la página si existe
     if (provinceSelect) {
         populateSelect(provinceSelect, shippingData, 'Selecciona...');
     }
-
+    
     // Event Listeners para actualizar los selectores en cascada
     if (provinceSelect) {
         provinceSelect.addEventListener('change', () => {
@@ -87,6 +88,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // Función principal para actualizar el carrito y calcular el total
+    function updateCart() {
+        if (!cartItemsDiv || !cartTotalSpan || !cartContainer) return;
+
+        let shippingCost = 0;
+        const selectedProvince = provinceSelect ? provinceSelect.value : '';
+        const selectedCanton = cantonSelect ? cantonSelect.value : '';
+        const selectedParish = parishSelect ? parishSelect.value : '';
+
+        if (selectedProvince && selectedCanton && selectedParish && shippingData[selectedProvince] && shippingData[selectedProvince][selectedCanton] && shippingData[selectedProvince][selectedCanton][selectedParish]) {
+            shippingCost = shippingData[selectedProvince][selectedCanton][selectedParish];
+        }
+
+        cartItemsDiv.innerHTML = '';
+        let subtotal = 0;
+
+        cart.forEach((item, index) => {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item');
+            itemElement.innerHTML = `
+                <span>${item.name}</span>
+                <span>$${item.price}</span>
+                <button class="remove-button" data-index="${index}">Eliminar</button>
+            `;
+            cartItemsDiv.appendChild(itemElement);
+            subtotal += item.price;
+        });
+
+        document.querySelectorAll('.remove-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const indexToRemove = e.target.getAttribute('data-index');
+                cart.splice(indexToRemove, 1);
+                updateCart();
+            });
+        });
+
         const total = subtotal + (cart.length > 0 && shippingCost ? shippingCost : 0);
 
         const summaryHtml = `
@@ -101,28 +138,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (subtotal > 0) {
             cartContainer.style.display = 'block';
-            checkoutButton.style.display = 'inline-block';
+            if (checkoutButton) {
+                checkoutButton.style.display = 'inline-block';
+            }
         } else {
             cartContainer.style.display = 'none';
-            checkoutButton.style.display = 'none';
+            if (checkoutButton) {
+                checkoutButton.style.display = 'none';
+            }
         }
     }
     
     // Lógica para añadir productos al carrito
-    botonesComprar.forEach(boton => {
-        boton.addEventListener('click', (e) => {
-            const productCard = e.target.closest('.product-card');
-            const name = productCard.querySelector('.product-name').textContent;
-            const price = parseFloat(productCard.querySelector('.product-price').textContent.replace('$', ''));
-            
-            cart.push({ name, price });
-            updateCart();
+    if (botonesComprar) {
+        botonesComprar.forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const productCard = e.target.closest('.product-card');
+                const name = productCard.querySelector('.product-name').textContent;
+                const price = parseFloat(productCard.querySelector('.product-price').textContent.replace('$', ''));
+                
+                cart.push({ name, price });
+                updateCart();
+            });
         });
-    });
+    }
 
     // Lógica para ir a la página de pago
-    checkoutButton.addEventListener('click', () => {
-        localStorage.setItem('totalPrice', cartTotalSpan.textContent);
-        window.location.href = 'pago-transferencia.html';
-    });
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', () => {
+            localStorage.setItem('totalPrice', cartTotalSpan.textContent);
+            window.location.href = 'pago-transferencia.html';
+        });
+    }
+
 });
