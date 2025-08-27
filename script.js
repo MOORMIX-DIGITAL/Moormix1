@@ -197,4 +197,40 @@ document.addEventListener('DOMContentLoaded', () => {
         paymentShippingSpan.textContent = `$${shippingCost}`;
         paymentSubtotalSpan.textContent = `$${subtotal}`;
     }
+
+    // Lógica para la página de rastreo
+    const trackButton = document.getElementById('track-button');
+    const trackingNumberInput = document.getElementById('tracking-number');
+    const trackingResultsDiv = document.getElementById('tracking-results');
+
+    if (trackButton && trackingNumberInput && trackingResultsDiv) {
+        trackButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita que el enlace recargue la página
+            const trackingNumber = trackingNumberInput.value.trim();
+
+            if (trackingNumber === '') {
+                trackingResultsDiv.innerHTML = '<p class="error">Por favor, ingresa un número de guía.</p>';
+                return;
+            }
+
+            // Simulación de rastreo (aquí iría la lógica real)
+            trackingResultsDiv.innerHTML = '<p>Buscando el estado de tu pedido...</p>';
+
+            // En un sitio web real, aquí se haría una llamada a la API de Servientrega o de la empresa de envíos
+            // Por ahora, mostraremos un mensaje simulado.
+            setTimeout(() => {
+                // Aquí puedes mostrar un mensaje diferente para cada estado de envío
+                const trackingStatus = `
+                    <div class="tracking-status">
+                        <h3>Estado del Pedido:</h3>
+                        <p><strong>Número de Guía:</strong> ${trackingNumber}</p>
+                        <p><strong>Estado:</strong> En tránsito</p>
+                        <p><strong>Ubicación Actual:</strong> Quito, Ecuador</p>
+                        <p><strong>Fecha Estimada de Entrega:</strong> 2-3 días hábiles</p>
+                    </div>
+                `;
+                trackingResultsDiv.innerHTML = trackingStatus;
+            }, 2000); // Simula un retraso de 2 segundos
+        });
+    }
 });
