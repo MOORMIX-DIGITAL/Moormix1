@@ -16,6 +16,7 @@
                 <a href="catalogo.html">Catálogo</a>
                 <a href="contacto.html">Contacto</a>
             </nav>
+            <button class="cta-button" id="open-cart-button">Ver Carrito</button>
         </div>
     </header>
 
@@ -29,48 +30,89 @@
         <section class="products-section">
             <h2>Productos Destacados</h2>
             <div class="product-grid">
-                <div class="product-card">
-                    <img src="https://m.media-amazon.com/images/I/71yzM6kLqBL._AC_UF894,1000_QL80_.jpg" alt="Samsung Galaxy A54 5G" class="product-image">
+                <div class="product-card" data-product-id="prod_01">
+                    <img src="img/samsung-a54.jpg" alt="Samsung Galaxy A54 5G" class="product-image">
                     <h3 class="product-name">Samsung Galaxy A54 5G</h3>
                     <p class="product-price">$300</p>
-                    <button class="buy-button">Comprar</button>
+                    <button class="buy-button">Añadir al Carrito</button>
                 </div>
-                <div class="product-card">
-                    <img src="https://images.samsung.com/is/image/samsung/p6-160-in-galaxy-a-a54-5g-sm-a546e-16gb-8gb-sm-a546ezgains-536767784" alt="Xiaomi Redmi Note 12 Pro" class="product-image">
+                <div class="product-card" data-product-id="prod_02">
+                    <img src="img/xiaomi-redmi-note-12-pro.jpg" alt="Xiaomi Redmi Note 12 Pro" class="product-image">
                     <h3 class="product-name">Xiaomi Redmi Note 12 Pro</h3>
                     <p class="product-price">$250</p>
-                    <button class="buy-button">Comprar</button>
+                    <button class="buy-button">Añadir al Carrito</button>
                 </div>
-                <div class="product-card">
-                    <img src="https://m.media-amazon.com/images/I/61kYn83v+IL.jpg" alt="Apple iPhone 14" class="product-image">
+                <div class="product-card" data-product-id="prod_03">
+                    <img src="img/iphone-14.jpg" alt="Apple iPhone 14" class="product-image">
                     <h3 class="product-name">Apple iPhone 14</h3>
                     <p class="product-price">$800</p>
-                    <button class="buy-button">Comprar</button>
+                    <button class="buy-button">Añadir al Carrito</button>
+                </div>
+                <div class="product-card" data-product-id="prod_04">
+                    <img src="img/samsung-s23-ultra.jpg" alt="Samsung Galaxy S23 Ultra" class="product-image">
+                    <h3 class="product-name">Samsung Galaxy S23 Ultra</h3>
+                    <p class="product-price">$1200</p>
+                    <button class="buy-button">Añadir al Carrito</button>
+                </div>
+                 <div class="product-card" data-product-id="prod_05">
+                    <img src="img/hp-spectre.jpg" alt="Laptop HP Spectre x360" class="product-image">
+                    <h3 class="product-name">Laptop HP Spectre x360</h3>
+                    <p class="product-price">$1500</p>
+                    <button class="buy-button">Añadir al Carrito</button>
+                </div>
+                <div class="product-card" data-product-id="prod_06">
+                    <img src="img/macbook-pro-m3.jpg" alt="MacBook Pro M3" class="product-image">
+                    <h3 class="product-name">MacBook Pro M3</h3>
+                    <p class="product-price">$2500</p>
+                    <button class="buy-button">Añadir al Carrito</button>
                 </div>
             </div>
-        </section>
-
-        <section class="cart-container">
-            <h2>Tu Carrito</h2>
-            <div id="cart-items"></div>
-            <div class="cart-total">
-                <p>Total: <span id="cart-total-price">$0</span></p>
-            </div>
-            <div class="shipping-section">
-                <h3>Datos de Envío</h3>
-                <div class="select-group">
-                    <select id="province-select"></select>
-                    <select id="canton-select"></select>
-                    <select id="parish-select"></select>
-                </div>
-            </div>
-            <button id="checkout-button" class="cta-button">Ir a Pagar</button>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2025 Moormix Digital. Todos los derechos reservados.</p>
     </footer>
+
+    <div id="product-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-button">&times;</button>
+            <div class="modal-body">
+                <div class="product-gallery">
+                    <img id="modal-main-image" src="" alt="Producto principal" class="main-image">
+                    <div id="modal-thumbnail-container" class="thumbnail-container"></div>
+                </div>
+                <div class="product-details-content">
+                    <h2 id="modal-product-name"></h2>
+                    <p id="modal-product-price" class="product-price"></p>
+                    <p id="modal-product-description"></p>
+                    <button id="modal-add-to-cart" class="cta-button">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-button">&times;</button>
+            <div class="modal-body">
+                <h2>Tu Carrito</h2>
+                <div id="modal-cart-items"></div>
+                <div class="shipping-section">
+                    <h3>Datos de Envío</h3>
+                    <div class="select-group">
+                        <select id="province-select"></select>
+                        <select id="canton-select"></select>
+                        <select id="parish-select"></select>
+                    </div>
+                </div>
+                <div class="cart-total">
+                    <p>Total: <span id="cart-total-price">$0</span></p>
+                </div>
+                <button id="checkout-button" class="cta-button">Ir a Pagar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
