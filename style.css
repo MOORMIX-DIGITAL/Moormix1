@@ -1,22 +1,55 @@
+/* Variables CSS para una gestión de color más fácil */
+:root {
+    --primary-color: #3498db; /* Azul vibrante */
+    --secondary-color: #2c3e50; /* Azul oscuro elegante */
+    --accent-color: #e74c3c; /* Rojo para precios y énfasis */
+    --text-color: #333;
+    --light-text-color: #555;
+    --background-light: #f8f9fa; /* Fondo muy claro */
+    --background-medium: #ecf0f1; /* Gris claro */
+    --white: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif; /* Usamos una fuente moderna y legible */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    line-height: 1.6;
 }
+
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-}
-header {
-    background-color: #fff;
     padding: 20px 0;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+h1, h2, h3, h4 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-weight: 700; /* Negrita para títulos */
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.8rem; }
+h4 { font-size: 1.4rem; }
+
+/* Header */
+header {
+    background-color: var(--white);
+    box-shadow: var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -24,76 +57,500 @@ header {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 15px 0;
 }
+
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
+    font-size: 1.8rem;
+    font-weight: 900; /* Extra negrita para el logo */
+    color: var(--primary-color);
     text-decoration: none;
+    letter-spacing: -1px;
 }
+
 nav a {
-    margin-left: 20px;
-    color: #555;
+    color: var(--light-text-color);
+    text-decoration: none;
+    margin-left: 30px;
+    font-weight: 500;
+    padding: 10px 18px;
+    border-radius: 25px; /* Bordes más suaves */
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+nav a:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    box-shadow: var(--shadow-light);
+}
+
+/* CTA Button */
+.cta-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 14px 30px;
+    border-radius: 25px; /* Bordes suaves */
     text-decoration: none;
     font-weight: bold;
-}
-.cta-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
     display: inline-block;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
     border: none;
     cursor: pointer;
+    box-shadow: var(--shadow-light);
 }
+
+.cta-button:hover {
+    background-color: #2980b9; /* Un tono más oscuro */
+    transform: translateY(-2px); /* Pequeño efecto 3D */
+    box-shadow: var(--shadow-medium);
+}
+
+/* Secciones */
 .hero-section {
     text-align: center;
-    padding: 50px 0;
+    padding: 100px 20px;
+    background: linear-gradient(to right, var(--primary-color), #5dade2); /* Degradado suave */
+    color: var(--white);
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: var(--shadow-medium);
 }
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    color: var(--white);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.hero-section p {
+    font-size: 1.4rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.products-section, .catalog-section, .contact-section, .payment-section {
+    padding: 60px 0;
     margin-top: 20px;
 }
-.product-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
 }
+
+.product-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
+}
+
 .product-image {
     width: 100%;
-    max-height: 200px;
+    height: 220px;
     object-fit: contain;
-    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
 }
-.buy-button {
-    background-color: #28a745;
-    color: white;
+
+.product-card h3 {
+    font-size: 1.4rem;
+    margin: 0 0 10px;
+    color: var(--secondary-color);
+}
+
+.product-card .product-price {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    margin: 0 0 20px;
+}
+
+.product-card .buy-button {
+    background-color: #2ecc71; /* Verde de éxito */
+    color: var(--white);
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px;
+    border-radius: 25px;
     cursor: pointer;
-    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    font-weight: 600;
+    box-shadow: var(--shadow-light);
 }
+
+.product-card .buy-button:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Cart */
 .cart-container {
-    margin-top: 30px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    border-radius: 8px;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-medium);
+    margin-top: 40px;
+    display: none; /* Se oculta por defecto */
 }
+
+.cart-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.cart-container h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+.cart-total {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+    color: var(--secondary-color);
+}
+
 .cart-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    font-size: 1.1rem;
 }
-.cart-total {
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.remove-button {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 0.9rem;
+}
+
+.remove-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+}
+
+.shipping-section {
+    margin-top: 30px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 25px;
+    text-align: center;
+}
+
+.shipping-section h3 {
+    margin-bottom: 20px;
+}
+
+.select-group select {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin: 5px 10px;
+    font-size: 1rem;
+    background-color: var(--white);
+    appearance: none; /* Elimina estilos por defecto del select */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232c3e50%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.9%204.9-4.8%2011.6-2.6%2017.6l139%20168.6c4.5%205.4%2010.8%208.1%2017.2%208.1s12.7-2.7%2017.2-8.1l139-168.6c2.2-6-1.5-12.7-2.6-17.6z%22%2F%3E%3C%2Fsvg%3E'); /* Flecha personalizada */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    min-width: 180px;
+    cursor: pointer;
+}
+
+.cart-summary {
+    font-size: 1.1rem;
     text-align: right;
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+    color: var(--light-text-color);
+}
+
+.cart-summary p {
+    margin: 8px 0;
+}
+
+#checkout-button {
+    width: 100%;
+    margin-top: 30px;
+    display: none;
+    font-size: 1.2rem;
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+    background-color: var(--white);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-medium);
+}
+
+.contact-section h1 {
+    margin-bottom: 20px;
+}
+
+.contact-section p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: var(--light-text-color);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--background-light);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    outline: none;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+#send-button {
+    align-self: center; /* Centrar el botón */
+    width: auto;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+}
+
+/* Payment Section */
+.payment-section {
+    text-align: center;
+    background-color: var(--white);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-medium);
+}
+
+.payment-section h1 {
+    margin-bottom: 20px;
+}
+
+.payment-section p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: var(--light-text-color);
+}
+
+.payment-details {
+    text-align: left;
+    margin-top: 40px;
+    padding: 30px;
+    background-color: var(--background-medium);
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+}
+
+.payment-details h3 {
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    font-size: 1.9rem;
+}
+
+.payment-details p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.payment-details p strong {
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.order-summary {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.order-summary p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    margin: 8px 0;
+}
+
+.order-summary hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--border-color), rgba(0, 0, 0, 0));
+    margin: 20px 0;
+}
+
+.total-price {
+    font-size: 2rem !important;
+    font-weight: bold;
+    text-align: right;
+    color: var(--accent-color);
     margin-top: 20px;
-    font-size: 1.2em;
+}
+
+.total-price span {
+    color: var(--accent-color);
+}
+
+.bank-info {
+    margin-bottom: 25px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--white);
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-color);
+}
+
+.bank-info h4 {
+    margin-top: 0;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--background-medium);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.important-note {
+    font-size: 1rem;
+    color: var(--light-text-color);
+    margin-top: 30px;
+    padding: 15px;
+    border: 2px dashed var(--primary-color); /* Borde más distintivo */
+    border-radius: 8px;
+    background-color: #eaf6fd; /* Fondo suave para la nota */
+    font-weight: 500;
+}
+
+.whatsapp-button {
+    background-color: #25D366; /* Color de WhatsApp */
+    color: var(--white);
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 30px;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow-light);
+}
+
+.whatsapp-button:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: var(--secondary-color);
+    color: var(--background-light);
+    margin-top: 50px;
+    font-size: 0.95rem;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 992px) {
+    .hero-section h1 { font-size: 3rem; }
+    .hero-section p { font-size: 1.3rem; }
+    .product-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .select-group select { margin: 5px; }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    nav {
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    nav a { margin: 0 5px; padding: 8px 15px; }
+    .hero-section { padding: 80px 15px; }
+    .hero-section h1 { font-size: 2.5rem; }
+    .hero-section p { font-size: 1.1rem; }
+    .products-section, .catalog-section, .contact-section, .payment-section { padding: 40px 0; }
+    .product-grid { gap: 20px; }
+    .cart-container, .contact-section, .payment-section { padding: 25px; }
+    .payment-details { padding: 20px; }
+    .payment-details h3 { font-size: 1.6rem; }
+    .bank-info h4 { font-size: 1.4rem; }
+    #send-button, .cta-button { padding: 12px 25px; font-size: 1rem; }
+    .whatsapp-button { padding: 12px 25px; font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 1.5rem; }
+    nav a { margin: 0; padding: 6px 10px; font-size: 0.9rem; }
+    .hero-section h1 { font-size: 2rem; }
+    .hero-section p { font-size: 1rem; }
+    .product-card h3 { font-size: 1.2rem; }
+    .product-card .product-price { font-size: 1.1rem; }
+    .cart-total { font-size: 1.5rem; }
+    .cart-item { font-size: 1rem; }
+    .payment-details h3 { font-size: 1.4rem; }
+    .bank-info h4 { font-size: 1.2rem; }
+    .payment-details p, .order-summary p, .important-note { font-size: 0.95rem; }
+    .total-price { font-size: 1.6rem !important; }
 }
