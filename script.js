@@ -190,12 +190,10 @@ document.addEventListener('DOMContentLoaded', () => {
         paymentSubtotalSpan.textContent = `$${subtotal}`;
     }
 
-// Lógica para la página de rastreo
     const trackButton = document.getElementById('track-button');
     const trackingNumberInput = document.getElementById('tracking-number');
     const trackingResultsDiv = document.getElementById('tracking-results');
 
-    // Datos de rastreo de ejemplo (simulación)
     const trackingData = {
         '123456789': {
             status: 'En tránsito',
@@ -245,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 trackingResultsDiv.innerHTML = trackingStatusHtml;
-            }, 2000); // Simula un retraso de 2 segundos
+            }, 2000);
         });
     }
+});
