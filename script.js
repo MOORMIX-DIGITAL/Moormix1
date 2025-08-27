@@ -36,8 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkoutButton = document.getElementById('checkout-button');
     const cartContainer = document.querySelector('.cart-container');
     const botonesComprar = document.querySelectorAll('.buy-button');
-    const contactButton = document.getElementById('contact-button');
-
+    
     let cart = [];
 
     function populateSelect(selectElement, data, defaultText) {
@@ -189,24 +188,5 @@ document.addEventListener('DOMContentLoaded', () => {
         paymentTotalSpan.textContent = `$${totalPrice}`;
         paymentShippingSpan.textContent = `$${shippingCost}`;
         paymentSubtotalSpan.textContent = `$${subtotal}`;
-    }
-
-    if (contactButton) {
-        contactButton.addEventListener('click', () => {
-            const productsList = cart.map(item => `- ${item.name}: $${item.price.toFixed(2)}`).join('\n');
-            const total = cartTotalSpan.textContent;
-            
-            const message = `¡Hola, Moormix Digital! Estoy interesado en los siguientes productos:
-            
-            ${productsList}
-            
-            *Total estimado: $${total}*
-            
-            Por favor, contáctame para coordinar el pago y el envío.`;
-            
-            const whatsappUrl = `https://wa.me/[Tu Número de WhatsApp]?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
-        });
     }
 });
