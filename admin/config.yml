@@ -2,12 +2,13 @@ backend:
   name: github
   repo: MOORMIX-DIGITAL/Moormix1
   branch: main
-  base_url: https://api.netlify.com/auth
-  auth_type: implicit
-  app_id: your-app-id # Este se usará en un paso posterior
+  auth_type: pkce # Esto es más seguro y fiable
+  app_id: Ov23linMVS5JUXJ4PcE1 # Tu app_id debe ir solo, sin texto extra
 
+local_backend: true
 media_folder: "img"
 public_folder: "/img"
+publish_mode: editorial_workflow
 
 collections:
   - name: "products"
