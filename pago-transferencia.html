@@ -3,118 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Compra</title>
+    <title>Pago - Moormix Digital</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .payment-info {
-            background-color: #e9f5ff;
-            border-left: 5px solid #007bff;
-            padding: 20px;
-            margin-top: 2rem;
-            border-radius: 5px;
-        }
-
-        .payment-info h2 {
-            color: #007bff;
-        }
-
-        .payment-info p {
-            margin-bottom: 10px;
-        }
-
-        .bank-details {
-            margin-bottom: 2rem;
-            border: 1px solid #ccc;
-            padding: 15px;
-            border-radius: 8px;
-        }
-
-        .contact-info {
-            text-align: center;
-        }
-
-        .contact-info button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .contact-info button:hover {
-            background-color: #218838;
-        }
-    </style>
 </head>
 <body>
 
     <header>
-        <h1>¡Compra realizada con éxito!</h1>
-        <p>Tu pedido está casi listo. Por favor, completa el pago.</p>
+        <div class="header-content">
+            <a href="index.html" class="logo">Moormix Digital</a>
+            <nav>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="rastreo.html">Rastreo</a>
+                <button id="contact-button">Contacto</button>
+            </nav>
+        </div>
     </header>
 
     <main class="container">
-        <div class="payment-info">
-            <h2>Datos para la Transferencia Bancaria</h2>
-            <p>Por favor, realiza una transferencia a una de las siguientes cuentas y envíanos el comprobante.</p>
-            <br>
-
-            <div class="bank-details">
-                <h3>Banco Guayaquil</h3>
-                <p><strong>Titular de la Cuenta:</strong> Michael Moran Lopez</p>
-                <p><strong>Tipo de Cuenta:</strong> Ahorros</p>
-                <p><strong>Número de Cuenta:</strong> 0036995950</p>
-                <p><strong>RUC:</strong> 1207085943001</p>
-            </div>
-
-            <div class="bank-details">
-                <h3>Banco Pichincha</h3>
-                <p><strong>Titular de la Cuenta:</strong> Michael Moran Lopez</p>
-                <p><strong>Tipo de Cuenta:</strong> Ahorros</p>
-                <p><strong>Número de Cuenta:</strong> 2210769474</p>
-                <p><strong>RUC:</strong> 1207085943001</p>
-            </div>
-
-            <p><strong>Total a pagar:</strong> $<span id="total-price">XXX</span></p>
-        </div>
-
-        <div class="contact-info" style="margin-top: 20px;">
-            <h2>Confirma tu Pago</h2>
-            <p>Haz clic en el botón de abajo para enviarnos tu comprobante de pago por WhatsApp y agilizar el envío de tu celular.</p>
-            <p>También puedes enviarnos el comprobante de transferencia a nuestro correo electrónico: <a href="mailto:moormixdigital@outlook.com">moormixdigital@outlook.com</a></p>
-            <br>
+        <section class="payment-section">
+            <h1>Confirmación y Pago</h1>
+            <p>Por favor, realiza una transferencia bancaria al siguiente número de cuenta y envía el comprobante para confirmar tu pedido.</p>
             
-            <button id="send-whatsapp">Enviar Comprobante</button>
-        </div>
+            <div class="payment-details">
+                <h3>Detalles de la Compra</h3>
+                <div class="order-summary">
+                    <p>Subtotal: <span id="payment-subtotal">$0</span></p>
+                    <p>Envío: <span id="payment-shipping">$0</span></p>
+                    <hr>
+                    <p class="total-price">Total: <span id="payment-total">$0</span></p>
+                </div>
+
+                <h3>Datos Bancarios</h3>
+                <p><strong>Titular de la cuenta:</strong> Michael Moran Lopez</p>
+                <p><strong>Cédula/RUC:</strong> 1207085943001</p>
+                <p><strong>Banco:</strong> Guayaquil</p>
+                <p><strong>Tipo de cuenta:</strong> Ahorros</p>
+                <p><strong>Número de cuenta:</strong> 0036995950</p>
+
+                                <h3>Datos Bancarios</h3>
+                <p><strong>Titular de la cuenta:</strong> Michael Moran Lopez</p>
+                <p><strong>Cédula/RUC:</strong> 1207085943001</p>
+                <p><strong>Banco:</strong> Pichincha</p>
+                <p><strong>Tipo de cuenta:</strong> Ahorros</p>
+                <p><strong>Número de cuenta:</strong> 2210769474</p>
+                
+                <p class="important-note">
+                    <strong>Importante:</strong> Una vez realizada la transferencia, envía el comprobante por WhatsApp al número [59367427594 para que podamos despachar tu pedido.
+                </p>
+            </div>
+            <a href="#" class="cta-button" onclick="window.print()">Imprimir o guardar como PDF</a>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 TechMóvil. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Moormix Digital. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const totalPrice = localStorage.getItem('totalPrice');
-            if (totalPrice) {
-                document.getElementById('total-price').textContent = totalPrice;
-            }
-            
-            const sendWhatsappButton = document.getElementById('send-whatsapp');
-            
-            if (sendWhatsappButton) {
-                sendWhatsappButton.addEventListener('click', () => {
-                    // Tu número de teléfono con el código de país de Ecuador (593)
-                    const myPhoneNumber = '593967427594'; 
-                    const message = `Hola, mi nombre es [Escribe aquí tu nombre]. Ya he realizado una compra y he completado la transferencia. Aquí está mi comprobante. Total pagado: $${totalPrice}`;
-                    
-                    const whatsappLink = `https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(message)}`;
-                    window.open(whatsappLink, '_blank');
-                });
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
