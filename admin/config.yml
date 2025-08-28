@@ -20,16 +20,66 @@ collections:
     folder: '_data/contact-messages'
     create: true
     fields:
+    - name: 'featured-products'
+    label: 'Productos Destacados'
+    folder: '_data/featured-products'
+    create: true
+    fields:
+      - label: 'Producto'
+        name: 'product'
+        widget: 'relation'
+        collection: 'products'
+        value_field: 'title'
+        search_fields: ['title']
       - {label: 'Nombre', name: 'name', widget: 'string'}
       - {label: 'Email', name: 'email', widget: 'string'}
       - {label: 'Mensaje', name: 'message', widget: 'text'}
+      - name: 'featured-products'
+    label: 'Productos Destacados'
+    folder: '_data/featured-products'
+    create: true
     fields:
+      - label: 'Producto'
+        name: 'product'
+        widget: 'relation'
+        collection: 'products'
+        value_field: 'title'
+        search_fields: ['title']
+    fields:
+    - name: 'home-sections'
+    label: 'Secciones de la página principal'
+    folder: 'content/home'
+    create: false
+    fields:
+      - {label: 'Título de la sección', name: 'title', widget: 'string'}
+      - label: 'Lista de categorías'
+        name: 'categories'
+        widget: 'list'
+        fields:
+          - label: 'Categoría'
+            name: 'category'
+            widget: 'relation'
+            collection: 'categories'
+            value_field: 'title'
+            search_fields: ['title']
     - label: 'Detalles técnicos'
         name: 'specs'
         widget: 'list'
         fields:
           - {label: 'Nombre del detalle', name: 'name', widget: 'string'}
           - {label: 'Descripción', name: 'description', widget: 'string'}
+    - name: 'categories'
+    label: 'Categorías'
+    folder: 'content/categories'
+    create: true
+    fields:
+      - {label: 'Título de la Categoría', name: 'title', widget: 'string'}
+    - label: 'Categoría'
+        name: 'category'
+        widget: 'relation'
+        collection: 'categories'
+        value_field: 'title'
+        search_fields: ['title']
     - label: 'Estado'
         name: 'status'
         widget: 'select'
