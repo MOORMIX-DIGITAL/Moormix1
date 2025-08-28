@@ -15,7 +15,25 @@ collections:
     folder: "data/products"
     create: true
     slug: "{{fields.name}}"
+    - name: 'contact-messages'
+    label: 'Mensajes de Contacto'
+    folder: '_data/contact-messages'
+    create: true
     fields:
+      - {label: 'Nombre', name: 'name', widget: 'string'}
+      - {label: 'Email', name: 'email', widget: 'string'}
+      - {label: 'Mensaje', name: 'message', widget: 'text'}
+    fields:
+    - label: 'Detalles técnicos'
+        name: 'specs'
+        widget: 'list'
+        fields:
+          - {label: 'Nombre del detalle', name: 'name', widget: 'string'}
+          - {label: 'Descripción', name: 'description', widget: 'string'}
+    - label: 'Estado'
+        name: 'status'
+        widget: 'select'
+        options: ['En Stock', 'Agotado']
       - {label: "Nombre del Producto", name: "name", widget: "string"}
       - {label: "Precio", name: "price", widget: "number"}
       - {label: "Descripción", name: "description", widget: "markdown"}
