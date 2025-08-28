@@ -19,6 +19,22 @@ collections:
       - {label: "Nombre del Producto", name: "name", widget: "string"}
       - {label: "Precio", name: "price", widget: "number"}
       - {label: "Descripción", name: "description", widget: "markdown"}
-      - {label: "Imagen Principal", name: "image", widget: "image"}
+      - label: 'Galería de imágenes'
+        name: 'gallery'
+        widget: 'list'
+        fields:
+          - {label: 'Imagen', name: 'image', widget: 'image'}
       - {label: 'Precio a crédito', name: 'credit_price', widget: 'number'}
 - {label: 'Descripción del crédito', name: 'credit_description', widget: 'string'}
+- label: 'Categoría'
+        name: 'category'
+        widget: 'relation'
+        collection: 'categories'
+        value_field: 'title'
+        search_fields: ['title']
+- name: 'categories'
+    label: 'Categorías'
+    folder: 'content/categories'
+    create: true
+    fields:
+      - {label: 'Título de la Categoría', name: 'title', widget: 'string'}
